@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Resource.h"
+#include "Request.h"
 #include "IProducer.h"
 #include "IConsumer.h"
 
@@ -13,12 +14,16 @@ class LinearFactory : public IProducer, public IConsumer {
     Resource* output;
     double ratio;
     double lastRequest;
+    double inputResourceStock;
     vector<Resource*> availableResources;
     public:
         LinearFactory(Resource* input, Resource *output, double ratio);
         ~LinearFactory();
         virtual vector<Resource*>* AvailableResources() override;
-        virtual vector<Request*>* GetRequests() override;
+        virtual double Produce(Resource* resource, double quantity) override;
+        virtual vector<Request*>* Require() override;
+        virtual void Deliver(Resource* resource, double quantity) override;
+
 };
 
 #endif

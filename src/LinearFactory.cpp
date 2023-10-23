@@ -1,4 +1,5 @@
 #include <vector>
+#include <algorithm>
 #include "LinearFactory.h"
 #include "Resource.h"
 #include "Request.h"
@@ -12,6 +13,7 @@ LinearFactory::LinearFactory(Resource* input, Resource* output, double ratio)
     this->output = output;
     this->ratio = ratio;
     this->lastRequest = 0;
+    this->inputResourceStock = 0;
     availableResources = vector<Resource*> { output };
 }
 
@@ -23,12 +25,24 @@ vector<Resource*>* LinearFactory::AvailableResources()
 {
     vector<Resource*>* resources = new vector<Resource*> {availableResources};
     return resources;
-};
+}
 
-vector<Request*>* LinearFactory::GetRequests()
+double LinearFactory::Produce(Resource* resource, double quantity)
 {
-    Request* request = new Request(input, lastRequest);
-    vector<Request*>* requests = new vector<Request*> {request};
+    double produceableQuantity = inputResourceStock * ratio;
+    return min(quantity, produceableQuantity);
+}
 
+vector<Request*>* LinearFactory::Require()
+{
+    double inputRequired = (lastRequest * ratio) - inputResourceStock;
+    Request* request = new Request(input, inputRequired);
+    vector<Request*>* requests = new vector<Request*> {request};
     return requests;
+}
+
+void LinearFactory::Deliver(Resource* resource, double quantity)
+{
+    lastRequest = quantity;
+    inputResourceStock += quantity;
 }

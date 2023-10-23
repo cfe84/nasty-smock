@@ -9,6 +9,7 @@ class IProducer
 {
     public:
         virtual vector<Resource*>* AvailableResources() = 0;
+        virtual double Produce(Resource* resource, double quantity) = 0;
 };
 
 #endif
