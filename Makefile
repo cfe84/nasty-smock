@@ -28,5 +28,8 @@ clean:
 	$(RM) out/*.o
 	$(RM) out/tests
 
-test: $(ALL)
-	$(CXX) -g test/*.test.cpp $(ALL_EXC_MAIN) -l UnitTest++ -o out/tests && out/tests
+build-test: $(ALL)
+	$(CXX) -g test/*.test.cpp $(ALL_EXC_MAIN) -l UnitTest++ -o out/tests 
+	
+test: build-test
+	./out/tests

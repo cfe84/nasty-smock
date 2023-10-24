@@ -6,11 +6,17 @@
 
 using namespace std;
 
-class IConsumer 
+class IConsumer
 {
-    public:
-        virtual vector<Request*>* Require() = 0;
-        virtual void Deliver(Resource* resource, double quantity) = 0;
+public:
+    /// @brief Get a list of requests that the consumer requires.
+    /// @return List of requests
+    virtual vector<Request *> *Require() = 0;
+
+    /// @brief Deliver resources to the consumer
+    /// @param resource
+    /// @param quantity
+    virtual void Deliver(Resource *resource, double quantity) = 0;
 };
 
 #endif
