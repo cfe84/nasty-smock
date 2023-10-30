@@ -11,6 +11,7 @@ private:
 
 public:
     QuantifiedResource(Resource *resource, double quantity);
+    QuantifiedResource(QuantifiedResource *original);
     Resource *getResource();
     double getQuantity();
 };

@@ -25,9 +25,9 @@ public:
     ~LinearFactory();
     virtual vector<Resource *> *AvailableResources() override;
     virtual void RequestProduction(Resource *resource, double quantity) override;
-    virtual vector<QuantifiedResource *> *Produce() override;
-    virtual vector<QuantifiedResource *> *GetRequests() override;
-    virtual void Deliver(QuantifiedResource *resource) override;
+    virtual vector<QuantifiedResource> Produce() override;
+    virtual vector<QuantifiedResource> GetRequests() override;
+    virtual void Deliver(QuantifiedResource resource) override;
 };
 
 #endif

@@ -7,6 +7,12 @@ QuantifiedResource::QuantifiedResource(Resource *resource, double quantity)
     this->quantity = quantity;
 }
 
+QuantifiedResource::QuantifiedResource(QuantifiedResource *original)
+{
+    this->resource = original->resource;
+    this->quantity = original->quantity;
+}
+
 Resource *QuantifiedResource::getResource()
 {
     return resource;

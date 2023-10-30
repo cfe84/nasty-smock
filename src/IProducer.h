@@ -20,7 +20,7 @@ public:
 
     /// @brief Trigger production of resources
     /// @return Resources that have been produced
-    virtual vector<QuantifiedResource *> *Produce() = 0;
+    virtual vector<QuantifiedResource> Produce() = 0;
 };
 
 #endif

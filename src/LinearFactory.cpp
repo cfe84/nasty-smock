@@ -37,22 +37,22 @@ void LinearFactory::RequestProduction(Resource *resource, double desiredQuantity
     produced += producedQuantity;
 }
 
-vector<QuantifiedResource *> *LinearFactory::Produce()
+vector<QuantifiedResource> LinearFactory::Produce()
 {
-    auto result = new QuantifiedResource(output, produced);
+    auto result = QuantifiedResource(output, produced);
     produced = 0;
-    return new vector<QuantifiedResource *>{result};
+    return vector<QuantifiedResource>{result};
 }
 
-vector<QuantifiedResource *> *LinearFactory::GetRequests()
+vector<QuantifiedResource> LinearFactory::GetRequests()
 {
     double inputRequired = (lastRequest * ratio) - inputResourceStock;
-    QuantifiedResource *request = new QuantifiedResource(input, inputRequired);
-    vector<QuantifiedResource *> *requests = new vector<QuantifiedResource *>{request};
+    auto request = QuantifiedResource(input, inputRequired);
+    auto requests = vector<QuantifiedResource>{request};
     return requests;
 }
 
-void LinearFactory::Deliver(QuantifiedResource *resource)
+void LinearFactory::Deliver(QuantifiedResource resource)
 {
-    inputResourceStock += resource->getQuantity();
+    inputResourceStock += resource.getQuantity();
 }
