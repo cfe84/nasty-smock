@@ -1,4 +1,4 @@
-CXX = g++
+CXX = clang++
 CPPFLAGS  = -g -Wall -Werror
 LDFLAGS = -g
 LDLIBS = 
